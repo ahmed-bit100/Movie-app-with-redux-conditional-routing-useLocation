@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../redux/actions";
+import { filterName, filterRating, login } from "../redux/actions";
 import StarRating from "./StarRating";
 
 const linkStyle = {
@@ -10,14 +10,14 @@ const linkStyle = {
 };
 
 const Search = () => {
-  const { isAdmin } = useSelector((state) => state);
+  const { isAdmin, searchRating, searchValue } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState();
-  const [searchRating, setSearchRating] = useState();
+  // const [searchValue, setSearchValue] = useState();
+  // const [searchRating, setSearchRating] = useState();
   //   const [admin, setAdmin] = useState(isAdmin);
 
-  const handleSearch = (e) => setSearchValue(e.target.value);
-  const handleRating = (rate) => setSearchRating(rate);
+  const handleSearch = (e) => dispatch(filterName(e.target.value));
+  const handleRating = (rate) => dispatch(filterRating(rate));
   const handleLogin = () => dispatch(login());
   return (
     <div className="header-container">

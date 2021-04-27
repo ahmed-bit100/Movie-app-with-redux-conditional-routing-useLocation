@@ -6,14 +6,20 @@ import AddMovie from "./AddMovie";
 
 const MovieList = () => {
   const movieList = useSelector((state) => state.movies);
-  const { isAdmin } = useSelector((state) => state);
+  const { isAdmin, searchValue, searchRating } = useSelector((state) => state);
   return (
     <div>
       <Search />
       <div className="movie-list">
-        {movieList.map((movie, index) => (
-          <MovieCard movie={movie} key={index} />
-        ))}
+        {movieList
+          .filter(
+            (el) =>
+              el.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+              el.rating >= searchRating
+          )
+          .map((movie, index) => (
+            <MovieCard movie={movie} key={index} />
+          ))}
       </div>
       {isAdmin ? <AddMovie /> : null}
     </div>

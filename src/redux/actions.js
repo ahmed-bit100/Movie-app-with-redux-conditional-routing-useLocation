@@ -1,4 +1,11 @@
-import { ADD_MOVIE, DELETE_MOVIE, EDIT_MOVIE, LOGIN } from "./actionTypes";
+import {
+  ADD_MOVIE,
+  DELETE_MOVIE,
+  EDIT_MOVIE,
+  FILTER_BY_NAME,
+  FILTER_BY_RATING,
+  LOGIN,
+} from "./actionTypes";
 
 export const addMovie = (newMovie) => {
   return {
@@ -24,5 +31,19 @@ export const editMovie = (editedMovie) => {
 export const login = () => {
   return {
     type: LOGIN,
+  };
+};
+
+export const filterName = (text) => {
+  return {
+    type: FILTER_BY_NAME,
+    payload: text,
+  };
+};
+
+export const filterRating = (rating) => {
+  return {
+    type: FILTER_BY_RATING,
+    payload: rating,
   };
 };
